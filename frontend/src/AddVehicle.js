@@ -11,13 +11,13 @@ const AddVehicle = () => {
         e.preventDefault();
 
         const vehicleData = {
-            user: 1, // Replace with the actual user ID
+            user: 1, // Ensure this matches a valid user ID
             number,
             make,
             model
         };
 
-        axios.post('/api/vehicles/add/', vehicleData)
+        axios.post('http://127.0.0.1:8000/api/vehicles/add/', vehicleData)
             .then(response => {
                 setMessage('Vehicle added successfully');
                 setNumber('');
@@ -25,7 +25,7 @@ const AddVehicle = () => {
                 setModel('');
             })
             .catch(error => {
-                console.error(error);
+                console.error('There was an error!', error.response ? error.response.data : error.message);
                 setMessage('Failed to add vehicle');
             });
     };
